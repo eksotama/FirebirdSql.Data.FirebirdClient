@@ -33,8 +33,6 @@ namespace FirebirdSql.Data.Client.Native
 	{
 #pragma warning disable IDE1006
 
-		#region Array Functions
-
 		IntPtr isc_array_get_slice(
 			[In, Out] IntPtr[] statusVector,
 			[MarshalAs(UnmanagedType.I4)] ref DatabaseHandle dbHandle,
@@ -52,10 +50,6 @@ namespace FirebirdSql.Data.Client.Native
 			IntPtr desc,
 			byte[] sourceArray,
 			ref int sliceLength);
-
-		#endregion
-
-		#region Blob Functions
 
 		IntPtr isc_create_blob2(
 			[In, Out] IntPtr[] statusVector,
@@ -96,10 +90,6 @@ namespace FirebirdSql.Data.Client.Native
 			[In, Out] IntPtr[] statusVector,
 			[MarshalAs(UnmanagedType.I4)] ref BlobHandle blobHandle);
 
-		#endregion
-
-		#region Database Functions
-
 		IntPtr isc_attach_database(
 			[In, Out] IntPtr[] statusVector,
 			short dbNameLength,
@@ -128,13 +118,10 @@ namespace FirebirdSql.Data.Client.Native
 			short parmBufferLength,
 			byte[] parmBuffer,
 			short dbType);
+
 		IntPtr isc_drop_database(
 			[In, Out] IntPtr[] statusVector,
 			[MarshalAs(UnmanagedType.I4)] ref DatabaseHandle dbHandle);
-
-		#endregion
-
-		#region Transaction Functions
 
 		IntPtr isc_start_multiple(
 			[In, Out]   IntPtr[] statusVector,
@@ -158,18 +145,14 @@ namespace FirebirdSql.Data.Client.Native
 			[In, Out] IntPtr[] statusVector,
 			[MarshalAs(UnmanagedType.I4)] ref TransactionHandle trHandle);
 
-		#endregion
-
-		#region Cancel Functions
+		IntPtr fb_shutdown(
+			int timeout,
+			int reason);
 
 		IntPtr fb_cancel_operation(
 			[In, Out] IntPtr[] statusVector,
 			[MarshalAs(UnmanagedType.I4)] ref DatabaseHandle dbHandle,
 			int option);
-
-		#endregion
-
-		#region DSQL Functions
 
 		IntPtr isc_dsql_allocate_statement(
 			[In, Out] IntPtr[] statusVector,
@@ -184,7 +167,7 @@ namespace FirebirdSql.Data.Client.Native
 
 		IntPtr isc_dsql_describe_bind(
 			[In, Out] IntPtr[] statusVector,
-			 [MarshalAs(UnmanagedType.I4)] ref StatementHandle stmtHandle,
+			[MarshalAs(UnmanagedType.I4)] ref StatementHandle stmtHandle,
 			short daVersion,
 			IntPtr xsqlda);
 
@@ -231,14 +214,6 @@ namespace FirebirdSql.Data.Client.Native
 			short bufferLength,
 			byte[] buffer);
 
-		IntPtr isc_vax_integer(
-			byte[] buffer,
-			short length);
-
-		#endregion
-
-		#region Services Functions
-
 		IntPtr isc_service_attach(
 			[In, Out] IntPtr[] statusVector,
 			short serviceLength,
@@ -268,8 +243,6 @@ namespace FirebirdSql.Data.Client.Native
 			byte[] requestSpb,
 			short bufferLength,
 			byte[] buffer);
-
-		#endregion
 
 #pragma warning restore IDE1006
 	}
